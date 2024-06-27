@@ -47,6 +47,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bcryptjs@npm:^2.4.3":
+  version: 2.4.3
+  resolution: "bcryptjs@npm:2.4.3"
+  checksum: 10c0/b969467087ed7a01ff905a1c6a0c45014ec586248a448ea08370c8ed8bb314bda16a870ca23e0961d7d23bdce1a04c76fa70a9d680be814fa9ac7d8fc61870a3
+  languageName: node
+  linkType: hard
+
 "body-parser@npm:1.20.2":
   version: 1.20.2
   resolution: "body-parser@npm:1.20.2"
@@ -85,6 +92,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "calendar-backend@workspace:."
   dependencies:
+    bcryptjs: "npm:^2.4.3"
     dotenv: "npm:^16.4.5"
     express: "npm:^4.19.2"
     express-validator: "npm:^7.1.0"
