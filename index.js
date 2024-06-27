@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import { dbConnection } from './database/config.js';
 import authRouter from './routes/auth.js';
 
 
@@ -7,6 +8,9 @@ dotenv.config();
 
 // Crear el servidor de express
 const app = express();
+
+// Base de datos
+dbConnection();
 
 // Directorio Público
 app.use( express.static( 'public' ) );
