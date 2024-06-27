@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import { dbConnection } from './database/config.js';
 import authRouter from './routes/auth.js';
 
@@ -11,6 +12,9 @@ const app = express();
 
 // Base de datos
 dbConnection();
+
+// CORS
+app.use( cors({ origin: true }) );
 
 // Directorio Público
 app.use( express.static( 'public' ) );
