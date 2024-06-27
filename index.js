@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import authRouter from './routes/auth.js';
 
 
 dotenv.config();
@@ -12,11 +13,8 @@ app.use( express.static( 'public' ) );
 
 
 // Rutas
-// app.use( '/', ( req, res ) => {
-//   res.json({
-//     ok: true,
-//   });
-// });
+app.use( '/api/auth', authRouter );
+// TODO: CRUD: Eventos
 
 // Escuchar peticiones
 const PORT = process.env.PORT || 3000;
