@@ -1,5 +1,5 @@
 import { response } from 'express';
-
+import Event from '../models/Event.js';
 
 const getEvents = ( req, res = response ) => {
   res.json({
@@ -9,6 +9,9 @@ const getEvents = ( req, res = response ) => {
 };
 
 const createEvent = ( req, res = response ) => {
+
+  console.log( req.body );
+    
   res.json({
     ok: true,
     msg: 'Create event'
