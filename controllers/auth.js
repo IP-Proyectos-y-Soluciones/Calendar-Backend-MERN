@@ -91,10 +91,21 @@ const loginUser = async( req, res = response ) => {
 };
 
 
-const revalidateToken = ( req, res = response ) => {
+const revalidateToken = async( req, res = response ) => {
+
+  const { uid, name } = req;
+
+  // Generar JWT
+  const token = await generateJWT( uid, name );
+
+  // Obtener información del usuario, y remover el password
+  const user = await User.findById( uid );
+
   res.json({
     ok: true,
-    msg: 'Renew'
+    token,
+    uid,
+    name: user.name,
   });
 };
 

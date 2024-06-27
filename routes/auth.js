@@ -6,6 +6,7 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 import { validateFields } from '../middlewares/validate-fields.js';
 import { createUser, loginUser, revalidateToken } from '../controllers/auth.js';
+import { validateJWT } from '../middlewares/validate-jwt.js';
 
 const router = Router();
 
@@ -32,6 +33,7 @@ router.post(
 
 router.get( 
   '/renew', 
+  validateJWT,
   revalidateToken 
 );
 
