@@ -8,14 +8,27 @@ const getEvents = ( req, res = response ) => {
   });
 };
 
-const createEvent = ( req, res = response ) => {
+const createEvent = async( req, res = response ) => {
 
-  console.log( req.body );
-    
-  res.json({
-    ok: true,
-    msg: 'Create event'
-  });
+  const event = new Event( req.body );
+  
+  try {
+    event.user = req.uid;
+    const eventSaved = await event.save();
+
+    res.json({
+      ok: true,
+      event: eventSaved
+    });
+
+  } catch ( error ) {
+    console.log( error );
+
+    res.status( 500 ).json({
+      ok: false,
+      msg: 'Contact the Administrator'
+    });
+  };
 };
 
 const updateEvent = ( req, res = response ) => {
