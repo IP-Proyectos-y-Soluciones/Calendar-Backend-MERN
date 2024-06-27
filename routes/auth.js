@@ -3,15 +3,23 @@
   host + /api/auth
 */
 import { Router } from 'express';
-
+import { createUser, loginUser, revalidateToken } from '../controllers/auth.js';
 
 const router = Router();
 
-router.get( '/', ( req, res ) => {
-  res.json({
-    ok: true,
-  });
-});
+router.post( 
+  '/new', 
+  createUser
+);
 
+router.post( 
+  '/', 
+  loginUser 
+);
+
+router.get( 
+  '/renew', 
+  revalidateToken 
+);
 
 export default router;
