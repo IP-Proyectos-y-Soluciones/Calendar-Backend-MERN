@@ -42,11 +42,48 @@ const createEvent = async( req, res = response ) => {
   };
 };
 
-const updateEvent = ( req, res = response ) => {
-  res.json({
-    ok: true,
-    msg: 'Update event'
-  });
+const updateEvent = async( req, res = response ) => {
+  
+  const eventId = req.params.id;
+  const uid = req.uid;
+
+  try {
+    const event = await Event.findById( eventId );
+
+    if ( !event ) {
+      return res.status( 404 ).json({
+        ok: false,
+        msg: 'Event does not exist for that id'
+      });
+    };
+
+    if ( event.user.toString() !== uid ) {
+      return res.status( 401 ).json({
+        ok: false,
+        msg: 'You do not have privileges to edit this event'
+      });
+    };
+
+    const newEvent = {
+      ...req.body,
+      user: uid
+    };
+
+    const eventUpdated = await Event.findByIdAndUpdate( eventId, newEvent, { new: true } );
+
+    res.json({
+      ok: true,
+      event: eventUpdated
+    });
+
+  } catch ( error ) {
+    console.log( error );
+
+    res.status( 500 ).json({
+      ok: false,
+      msg: 'Contact the Administrator'
+    });
+  };
 };
 
 const deleteEvent = ( req, res = response ) => {
