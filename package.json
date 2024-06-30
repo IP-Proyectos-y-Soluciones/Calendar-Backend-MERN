@@ -7,9 +7,15 @@
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "node", "express", "calendar", "IP", "Proyectos", "Soluciones"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IP-Proyectos-y-Soluciones/Calendar-Backend-MERN-.git"
+  },
   "author": "Bladimir G. Parra B. | IP Proyectos y Soluciones",
-  "license": "ISC",
+  "license": "MIT",
   "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
