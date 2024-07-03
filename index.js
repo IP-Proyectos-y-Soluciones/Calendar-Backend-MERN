@@ -1,4 +1,6 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { dbConnection } from './database/config.js';
@@ -10,6 +12,10 @@ dotenv.config();
 
 // Crear el servidor de express
 const app = express();
+
+// Obtener el directorio actual
+const __filename = fileURLToPath( import.meta.url );
+const __dirname = path.dirname( __filename );
 
 // Base de datos
 dbConnection();
@@ -26,6 +32,10 @@ app.use( express.json() );
 // Rutas
 app.use( '/api/auth', authRouter );
 app.use( '/api/events', eventsRouter );
+
+app.use( '*', ( req, res ) => {
+  res.sendFile( path.join( __dirname, 'public/index.html') );
+});
 
 // Escuchar peticiones
 const PORT = process.env.PORT || 3000;
